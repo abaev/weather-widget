@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
-// import './App.css';
+// import './Widget.css';
 import Button from '@material-ui/core/Button';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 
-function App() {
+function Widget() {
   return (
     <div>
       <Button variant="contained">Default</Button>
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default Widget;
