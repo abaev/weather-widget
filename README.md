@@ -20,7 +20,7 @@ You will also see any lint errors in the console.
 Всё необходимое для работы виджета будет находится в папке `/build/static`.  
 **Для подключения виджета**  
 Внутри элемнта `<head>` укажите:  
-`<script src="./build/static/js/main.js" defer></script>`
+`<script src="./build/static/js/main.js" defer></script>`  
 `<link rel="stylesheet" href="./build/static/css/main.css">`
 
 ### `npm test`
