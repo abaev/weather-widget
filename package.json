@@ -17,7 +17,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "npm run build:react && npm run build:bundle",
+    "build:react": "craco build",
+    "build:bundle": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
