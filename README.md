@@ -14,11 +14,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm run build bundle`
-Сборка в bundle, без разделения файлов.
-Всё необходимое для работы виджета будет находится в папке `/build/static`
-**Для подключения виджета**
-Внутри элемнта `<head>` укажите:
+### `npm run build bundle`  
+  
+Сборка в bundle, без разделения файлов.  
+Всё необходимое для работы виджета будет находится в папке `/build/static`.  
+**Для подключения виджета**  
+Внутри элемнта `<head>` укажите:  
 `<script src="./build/static/js/main.js" defer></script>`
 `<link rel="stylesheet" href="./build/static/css/main.css">`
 
