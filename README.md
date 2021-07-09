@@ -15,7 +15,6 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `npm run build bundle`
-
 Сборка в bundle, без разделения файлов.
 Всё необходимое для работы виджета будет находится в папке `/build/static`
 **Для подключения виджета**
