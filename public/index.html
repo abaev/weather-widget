@@ -28,8 +28,18 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    
-    <weather-widget></weather-widget>
+
+    <!-- Этот <div> nолько для отладки, чтобы убедиться,
+    что виджет правильно занимает выделенный ему контейнер -->
+    <div class="weather-widget-container">
+      <weather-widget></weather-widget>
+    </div>
     
   </body>
+
+  <style>
+    .weather-widget-container {
+      max-width: 200px;
+    }
+  </style>
 </html>
