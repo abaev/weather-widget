@@ -1,3 +1,9 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.report-conditions-image {
+  width: 64px;
+  height: 54px;
+  object-fit: none;
+}

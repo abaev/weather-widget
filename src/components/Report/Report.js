@@ -1,8 +1,8 @@
-// Общий компонент с прогнозом по всем выбранным городам
+// Общий компонент с погодой по всем выбранным городам
 
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import ReportPlace from '@/components/ReportPlace/ReportPlace';
+import LocationReport from '@/components/LocationReport/LocationReport';
 
 class Report extends React.Component {
   constructor(props) {
@@ -16,11 +16,19 @@ class Report extends React.Component {
   }
 
   render() {
+    let reports = [];
+    this.props.locations.forEach((l, i) => {
+      reports.push(
+        <LocationReport location={this.props.locations[i]}
+          showGear={i === 0}
+          onGearClick={this.onGearClick}
+          key={i} />
+      );
+    });
+
     return (
       <Box width={1}>
-        <ReportPlace showGear={true}
-          onGearClick={this.onGearClick}/>
-        <ReportPlace />
+        {reports}
       </Box>
     );
   }

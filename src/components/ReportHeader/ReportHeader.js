@@ -21,8 +21,8 @@ class ReportHeader extends React.Component {
       <Box width={1} display="flex"
         justifyContent="space-between"
         alignItems="center">
-        <Typography variant="subtitle2" component="span" >
-          <b>London, UK</b>
+        <Typography variant="subtitle2" component="span">
+          <b>{this.props.header}</b>
         </Typography>
 
         {this.props.showGear

@@ -4,18 +4,28 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import PlacesList from '@/components/PlacesList/PlacesList';
+import LocationsList from '@/components/LocationsList/LocationsList';
 import AddLocation from '@/components/AddLocation/AddLocation';
 
 class Settings extends React.Component {
   constructor(props) {
     super(props);
 
-    this.closeSettings = this.closeSettings.bind(this);
+    this.onCloseClick = this.onCloseClick.bind(this);
+    this.onLocationAdd = this.onLocationAdd.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  closeSettings() {
-    this.props.closeSettings();
+  onCloseClick() {
+    this.props.onCloseClick();
+  }
+
+  onLocationAdd(location) {
+    this.props.onLocationAdd(location);
+  }
+
+  onDeleteClick(location) {
+    this.props.onDeleteClick(location);
   }
 
   render() {
@@ -27,14 +37,17 @@ class Settings extends React.Component {
           <Typography variant="subtitle2" component="span" >
             <b>Settings</b>
           </Typography>
-          <CloseIcon className="cursor-pointer" 
-            onClick={this.closeSettings} />
+          {this.props.locations.length > 0
+            && <CloseIcon className="cursor-pointer" 
+                onClick={this.onCloseClick} />
+          }
+          
         </Box>
 
-        <PlacesList />
-        <PlacesList />
+        <LocationsList locations={this.props.locations}
+          onDeleteClick={this.onDeleteClick} />
 
-        <AddLocation />
+        <AddLocation onLocationAdd={this.onLocationAdd}/>
       </Box>
     );
   }
