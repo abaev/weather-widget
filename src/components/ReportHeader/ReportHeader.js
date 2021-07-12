@@ -4,25 +4,31 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { withStyles } from "@material-ui/core/styles";
-
-const StyledSettingsIcon = withStyles({
-  root: {
-    cursor: 'pointer'
-  }
-})(SettingsIcon);
 
 class ReportHeader extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onGearClick = this.onGearClick.bind(this);
+  }
+
+  onGearClick() {
+    this.props.onGearClick();
+  }
+
   render() {
     return (
-      <Box width={1} gutterBottom display="flex"
+      <Box width={1} display="flex"
         justifyContent="space-between"
         alignItems="center">
         <Typography variant="subtitle2" component="span" >
           <b>London, UK</b>
         </Typography>
 
-        <StyledSettingsIcon fontSize="2rem" />
+        {this.props.showGear
+          && <SettingsIcon className="cursor-pointer"
+          onClick={this.onGearClick}/>}
+        
       </Box>
     );
   }

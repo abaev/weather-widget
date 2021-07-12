@@ -8,12 +8,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons'
 import ReportHeader from '@/components/ReportHeader/ReportHeader';
 
-
 class ReportPlace extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onGearClick = this.onGearClick.bind(this);
+  }
+
+  onGearClick() {
+    this.props.onGearClick();
+  }
+
   render() {
     return (
       <Box width={1} mb={3}>
-        <ReportHeader />
+        <ReportHeader showGear={this.props.showGear}
+        onGearClick={this.onGearClick}/>
         
         {/* Иконка с погодными условиями и температура */}
         <Box width={1} display="flex" 

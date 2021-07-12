@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '@/components/App/App';
 import '@fontsource/roboto';
+import '@/components/styles/main.css';
 
 // Это должно быть закомментировано для сборки в bundle
 import reportWebVitals from '@/reportWebVitals';
