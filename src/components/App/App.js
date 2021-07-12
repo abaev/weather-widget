@@ -7,7 +7,8 @@ import Settings from '@/components/Settings/Settings';
 const StyledContainer = withStyles({
   root: {
     paddingLeft: '0px',
-    paddingRight: '0px'
+    paddingRight: '0px',
+    maxWidth: '300px'
   }
 })(Container);
 
