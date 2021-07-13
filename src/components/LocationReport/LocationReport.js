@@ -22,13 +22,14 @@ class LocationReport extends React.Component {
   render() {
     const reportHeader = `${this.props.location.name}, ${this.props.location.country}`;
     const report = this.props.report || {};
+    const weather = report.weather || {};
     const conditionsImage = 'http://openweathermap.org/img/wn/'
-      + `${report.weather[0]?.icon}@2x.png`;
+      + `${weather[0]?.icon}@2x.png`;
     
     const temperature = Math.round(report.main?.temp - 273.15) || '';
     const feelsLike = Math.round(report.main?.feels_like - 273.15) || '';
     
-    let description = report.weather[0]?.description || '';
+    let description = weather[0]?.description || '';
     description = description.charAt(0).toUpperCase() + description.slice(1);
 
     let windSpeed;
