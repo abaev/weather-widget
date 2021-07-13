@@ -25,19 +25,20 @@ class LocationReport extends React.Component {
     return (
       <Box width={1} mb={3}>
         <ReportHeader header={reportHeader} showGear={this.props.showGear}
-        onGearClick={this.onGearClick}/>
+          onGearClick={this.onGearClick}/>
         
         {/* Иконка с погодными условиями и температура */}
         <Box width={1} display="flex" 
           justifyContent="center"
-          alignItems="center">
+          alignItems="center" mt={2}>
           <img className="report-conditions-image" src="http://openweathermap.org/img/wn/10d@2x.png" />
           <Typography variant="h4" component="span" >
             7&deg; C
           </Typography>
         </Box>
 
-        <Box width={1} mb={1}>
+        {/* Ощается как, погодные условия в общем */}
+        <Box width={1} mt={2} mb={1}>
           <Typography variant="caption">
             Feels like -3&deg; C. Broken clouds. Light breeze
           </Typography>

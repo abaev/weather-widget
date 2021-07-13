@@ -23,8 +23,10 @@ You will also see any lint errors in the console.
 `<script src="./build/static/js/main.js" defer></script>`  
 `<link rel="stylesheet" href="./build/static/css/main.css">`  
 **Использование**  
-`<weather-widget></weather-widget>` (Максимальная ширина 300 px)  
-
+`<weather-widget></weather-widget>` (Максимальная ширина 340 px) 
+**Демо**  
+`example.html`  
+  
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

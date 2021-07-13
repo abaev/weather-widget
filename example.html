@@ -22,7 +22,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <!-- Для подключения виджета -->
+    <!-- Подключаем виджет -->
     <script src="./build/static/js/main.js" defer></script>
     <link rel="stylesheet" href="./build/static/css/main.css">
 
@@ -31,6 +31,15 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     
-    <weather-widget></weather-widget>
+    <div class="weather-widget-container">
+      <weather-widget></weather-widget>
+    </div>
   </body>
+
+  <style>
+    .weather-widget-container {
+      max-width: 200px;
+      margin: auto;
+    }
+  </style>
 </html>
