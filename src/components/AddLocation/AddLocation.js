@@ -35,7 +35,7 @@ class AddLocation extends React.Component {
               placeholder="London, UK"/>
 
             <Box ml={1}>
-              <KeyboardReturnIcon className="cursor-pointer" ml={5}
+              <KeyboardReturnIcon className="clickable" ml={5}
                 onClick={this.onLocationAdd}/>
             </Box>
           </Box>

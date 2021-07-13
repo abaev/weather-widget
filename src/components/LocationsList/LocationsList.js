@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { withStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
 import grey from '@material-ui/core/colors/grey';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const PlaceCardContent = withStyles({
@@ -49,15 +49,15 @@ class LocationsList extends React.Component {
             <PlaceCardContent>
               <Box justifyContent="space-between" display="flex">
                 <Box alignItems="center" display="flex">
-                  <MenuIcon className="cursor-pointer" />
-                  &nbsp;
+                  {/* <MenuIcon className="clickable" />
+                  &nbsp; */}
                   <Typography variant="caption" component="span" >
                     <b>{`${l.name}, ${l.country}`}</b>
                   </Typography>
                 </Box>
 
                 <DeleteIcon onClick={this.onDeleteClick.bind(this, l)}
-                  className="cursor-pointer" />
+                  className="clickable" />
               </Box>
             </PlaceCardContent>
           </PlaceCard>

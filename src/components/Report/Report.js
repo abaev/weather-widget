@@ -20,6 +20,8 @@ class Report extends React.Component {
     this.props.locations.forEach((l, i) => {
       reports.push(
         <LocationReport location={this.props.locations[i]}
+          report={this.props.reports
+            .find(r => r.id === this.props.locations[i].id)}
           showGear={i === 0}
           onGearClick={this.onGearClick}
           key={i} />

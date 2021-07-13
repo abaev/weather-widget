@@ -38,7 +38,7 @@ class Settings extends React.Component {
             <b>Settings</b>
           </Typography>
           {this.props.locations.length > 0
-            && <CloseIcon className="cursor-pointer" 
+            && <CloseIcon className="clickable" 
                 onClick={this.onCloseClick} />
           }
           

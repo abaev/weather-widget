@@ -5,6 +5,7 @@ import haversine from 'haversine-distance'
 import Report from '@/components/Report/Report';
 import Settings from '@/components/Settings/Settings';
 import cityList from '@/city.list.min.json';
+import axios from 'axios';
 
 const StyledContainer = withStyles({
   root: {
@@ -20,7 +21,8 @@ class App extends React.Component {
 
     this.state = {
       view: 'settings',
-      locations: []
+      locations: [],
+      reports: []
     }
 
     this.showSettings = this.showSettings.bind(this);
@@ -33,11 +35,15 @@ class App extends React.Component {
     // Инициализируем состояние из хранилища
     let persistentState = this.getPersistentState();
     if(persistentState) {
-      this.setPersistentState(state => persistentState);
+      this.setPersistentState(state => {
+        this.updateReports(persistentState.locations);
+        return persistentState;
+      });
     }
 
-    if(this.state.locations.length === 0) {
-      // Если нет сохраненных городов, пробуем подобрать город по координатам
+    if(!persistentState || persistentState.locations.length === 0) {
+      // Если нет сохраненных городов,
+      // пробуем подобрать город по координатам
       // Получим координаты пользователя
       let position = await getUserLocation();
 
@@ -67,13 +73,16 @@ class App extends React.Component {
 
         // Добавим местоположение пользователя
         if(location && this.state.locations.length === 0) {
-          this.setPersistentState(state => ({
-            locations: state.locations.concat([location])
-          }))
+          this.setPersistentState(state => {
+            let newLocations = state.locations.slice().concat([location]);
+            this.updateReports(newLocations);
+            
+            return { locations: newLocations };
+          });
         }
       }
       
-      // На случай, если не удалось подобрать город показываем настройки
+      // На случай, если не удалось подобрать город - показываем настройки
       this.setPersistentState(state => ({
         view: state.locations.length === 0 ? 'settings' : 'report'
       }))
@@ -90,6 +99,7 @@ class App extends React.Component {
         return persistentState;
       
       } else return null;
+    
     } catch(error) {
       console.error(error);
       return null;
@@ -103,12 +113,12 @@ class App extends React.Component {
   setPersistentState(setStateFn) {
     this.setState(state => {
       let persState = this.getPersistentState();
-      let mewState = setStateFn(state);
+      let newState = setStateFn(state);
 
       localStorage.setItem('weatherWidget', JSON.stringify(
-        Object.assign(persState || {}, mewState)));
+        Object.assign(persState || {}, newState)));
       
-      return mewState;
+      return newState;
     });
   }
 
@@ -125,13 +135,17 @@ class App extends React.Component {
   }
 
   deleteLocation(location) {
-    // Удаляем город
+    // Удаляем город погоду для него
     this.setPersistentState(state => {
       let index = state.locations.findIndex(l => l.id === location.id);
+      let repIndex = state.reports.findIndex(r => r.id === location.id);
       let newLocations = state.locations.slice();
       newLocations.splice(index, 1);
 
-      return { locations: newLocations };
+      let newReports = state.reports.slice();
+      newReports.splice(repIndex, 1);
+
+      return { locations: newLocations, reports: newReports };
     });
   }
 
@@ -153,10 +167,29 @@ class App extends React.Component {
     if(matchLocation
         && !this.state.locations.some(l => l.id === matchLocation.id)) {
       // Существует такой город и его ещё нет в списке, добавляем
+      let newLocations = this.state.locations.slice().concat([matchLocation]);
 
       this.setPersistentState(state => {
-        return { locations: state.locations.concat([matchLocation]) };
+        newLocations = state.locations.concat([matchLocation]);
+        return { locations: newLocations };
       });
+
+      this.updateReports(newLocations);
+    }
+  }
+
+  // Запрашиваем погоду для выбранных городов, сохраняем ее в состоянии
+  async updateReports(locations) {
+    if(locations.length === 0) return;
+
+    try {
+      let response = await getReports(locations.map(l => l.id));
+      this.setPersistentState(state => ({
+        reports: response.data.list
+      }));
+
+    } catch(error) {
+      console.error(error);
     }
   }
 
@@ -165,6 +198,7 @@ class App extends React.Component {
       <StyledContainer width={1}>
         {this.state.view === 'report'
           ? <Report locations={this.state.locations}
+              reports={this.state.reports}
               onGearClick={this.showSettings}/>
           : <Settings locations={this.state.locations}
               onCloseClick={this.closeSettings}
@@ -176,15 +210,29 @@ class App extends React.Component {
 }
 
 // Заворачиваем в промис получение геолокации пользователя
-// Нам в принципе, не важна обработка ошибок, а важен только объект
+// Нам, в принципе, не важна обработка ошибок, а важен только объект
 // с геолокацией, поэтому будем просто возвращать null в случае
 // ошибки, или если метод не поддерживается
-const getUserLocation = function() {
+function getUserLocation() {
   return new Promise(resolve => {
     if(!navigator.geolocation) {
       resolve(null);
     
     } else navigator.geolocation.getCurrentPosition(resolve, () => null);
+  });
+}
+
+// Запрос информации о погоде
+// id - массив с айдишниками городов
+function getReports(id) {
+  const appID = 'f05fa10425c30b0d80323eb166a9b626';
+  
+  return axios({
+    method: 'get',
+    // group - запрос погоды для списка городов
+    url: 'https://api.openweathermap.org/data/2.5/group?lang=en'
+      + `&id=${id.join(',')}`
+      + `&appid=${appID}`
   });
 }
 

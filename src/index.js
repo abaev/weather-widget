@@ -5,7 +5,7 @@ import '@fontsource/roboto';
 import '@/components/styles/main.css';
 
 // Это должно быть закомментировано для сборки в bundle
-import reportWebVitals from '@/reportWebVitals';
+// import reportWebVitals from '@/reportWebVitals';
 
 // Находим все элементы <weather-widget>
 let root = document.getElementsByTagName('weather-widget');
@@ -21,4 +21,4 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();

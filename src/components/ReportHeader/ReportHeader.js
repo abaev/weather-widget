@@ -26,9 +26,8 @@ class ReportHeader extends React.Component {
         </Typography>
 
         {this.props.showGear
-          && <SettingsIcon className="cursor-pointer"
+          && <SettingsIcon className="clickable"
           onClick={this.onGearClick}/>}
-        
       </Box>
     );
   }

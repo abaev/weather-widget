@@ -16,7 +16,9 @@ You will also see any lint errors in the console.
 
 ### `npm run build bundle`  
   
-Сборка в bundle, без разделения файлов.  
+Сборка в bundle, без разделения файлов. 
+Для успешной сборки в `index.js` должны быть закомментированы
+импорт и запуск `reportWebVitals`. 
 Всё необходимое для работы виджета будет находится в папке `/build/static`.  
 **Для подключения виджета**  
 Внутри элемнта `<head>` укажите:  
@@ -24,8 +26,8 @@ You will also see any lint errors in the console.
 `<link rel="stylesheet" href="./build/static/css/main.css">`  
 **Использование**  
 `<weather-widget></weather-widget>` (Максимальная ширина 340 px)  
-**Демо**  
-`example.html`  
+**После сборки можно посмотреть демо**  
+`example.html` в папке проекта  
   
 ### `npm test`
 
