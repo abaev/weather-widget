@@ -14,6 +14,7 @@ class Settings extends React.Component {
     this.onCloseClick = this.onCloseClick.bind(this);
     this.onLocationAdd = this.onLocationAdd.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
+    this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
 
   onCloseClick() {
@@ -26,6 +27,10 @@ class Settings extends React.Component {
 
   onDeleteClick(location) {
     this.props.onDeleteClick(location);
+  }
+
+  handleOnDragEnd(result) {
+    this.props.onDragEnd(result);
   }
 
   render() {
@@ -45,7 +50,8 @@ class Settings extends React.Component {
         </Box>
 
         <LocationsList locations={this.props.locations}
-          onDeleteClick={this.onDeleteClick} />
+          onDeleteClick={this.onDeleteClick}
+          onDragEnd={this.handleOnDragEnd} />
 
         <AddLocation onLocationAdd={this.onLocationAdd}/>
       </Box>

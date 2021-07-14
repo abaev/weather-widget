@@ -29,6 +29,7 @@ class App extends React.Component {
     this.closeSettings = this.closeSettings.bind(this);
     this.addLocation = this.addLocation.bind(this);
     this.deleteLocation = this.deleteLocation.bind(this);
+    this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
 
   async componentDidMount() {
@@ -193,6 +194,20 @@ class App extends React.Component {
     }
   }
 
+  // Обрабатываем окончание drag'n'drop -
+  // изменяем порядок выбранных городов
+  handleOnDragEnd(result) {
+    this.setPersistentState(state => {
+      let locations = state.locations.slice();
+      let [reorderedLocation] = locations
+        .splice(result.source.index, 1);
+      locations.splice(result.destination.index,
+        0, reorderedLocation);
+      
+      return { locations };
+    });
+  }
+
   render() {
     return (
       <StyledContainer width={1}>
@@ -203,7 +218,8 @@ class App extends React.Component {
           : <Settings locations={this.state.locations}
               onCloseClick={this.closeSettings}
               onLocationAdd={this.addLocation} 
-              onDeleteClick={this.deleteLocation} />}
+              onDeleteClick={this.deleteLocation}
+              onDragEnd={this.handleOnDragEnd} />}
       </StyledContainer>
     );
   }
