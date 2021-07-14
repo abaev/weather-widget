@@ -38,7 +38,11 @@ class App extends React.Component {
     if(persistentState) {
       this.setPersistentState(state => {
         this.updateReports(persistentState.locations);
-        return persistentState;
+        return Object.assign(persistentState,
+          {
+            view: persistentState.locations.length === 0 ? 'settings' : 'report'
+          }
+        );
       });
     }
 
