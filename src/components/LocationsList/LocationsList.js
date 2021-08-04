@@ -34,16 +34,13 @@ const PlaceCard = withStyles({
 class LocationsList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onDeleteClick = this.onDeleteClick.bind(this);
-    this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
 
-  onDeleteClick(location) {
+  onDeleteClick = location => {
     this.props.onDeleteClick(location);
   }
 
-  handleOnDragEnd(result) {
+  handleOnDragEnd = result => {
     if(!result.destination) return;
     this.props.onDragEnd(result);
   }
@@ -74,7 +71,7 @@ class LocationsList extends React.Component {
                         </Typography>
                       </Box>
 
-                      <DeleteIcon onClick={this.onDeleteClick.bind(this, l)}
+                      <DeleteIcon onClick={() => this.onDeleteClick(l)}
                         className="clickable" />
                     </Box>
                   </PlaceCardContent>

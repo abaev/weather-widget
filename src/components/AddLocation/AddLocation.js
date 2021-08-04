@@ -9,11 +9,9 @@ class AddLocation extends React.Component {
   constructor(props) {
     super(props);
     this.locationInput = React.createRef();
-
-    this.onLocationAdd = this.onLocationAdd.bind(this);
   }
 
-  onLocationAdd(event) {
+  onLocationAdd = event => {
     event.preventDefault();
     
     // Если ввели не пустую строку, передаем ввод выше

@@ -8,11 +8,9 @@ import SettingsIcon from '@material-ui/icons/Settings';
 class ReportHeader extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onGearClick = this.onGearClick.bind(this);
   }
 
-  onGearClick() {
+  onGearClick = () => {
     this.props.onGearClick();
   }
 

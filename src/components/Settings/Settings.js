@@ -10,26 +10,21 @@ import AddLocation from '@/components/AddLocation/AddLocation';
 class Settings extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onCloseClick = this.onCloseClick.bind(this);
-    this.onLocationAdd = this.onLocationAdd.bind(this);
-    this.onDeleteClick = this.onDeleteClick.bind(this);
-    this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
 
-  onCloseClick() {
+  onCloseClick = () => {
     this.props.onCloseClick();
   }
 
-  onLocationAdd(location) {
+  onLocationAdd = location => {
     this.props.onLocationAdd(location);
   }
 
-  onDeleteClick(location) {
+  onDeleteClick = location => {
     this.props.onDeleteClick(location);
   }
 
-  handleOnDragEnd(result) {
+  handleOnDragEnd = result => {
     this.props.onDragEnd(result);
   }
 

@@ -24,12 +24,6 @@ class App extends React.Component {
       locations: [],
       reports: []
     }
-
-    this.showSettings = this.showSettings.bind(this);
-    this.closeSettings = this.closeSettings.bind(this);
-    this.addLocation = this.addLocation.bind(this);
-    this.deleteLocation = this.deleteLocation.bind(this);
-    this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
 
   async componentDidMount() {
@@ -127,19 +121,19 @@ class App extends React.Component {
     });
   }
 
-  showSettings() {
+  showSettings = () => {
     this.setPersistentState(state => {
       return { view: 'settings' };
     });
   }
 
-  closeSettings() {
+  closeSettings = () => {
     this.setPersistentState(state => {
       return { view: 'report' };
     });
   }
 
-  deleteLocation(location) {
+  deleteLocation = location => {
     // Удаляем город погоду для него
     this.setPersistentState(state => {
       let index = state.locations.findIndex(l => l.id === location.id);
@@ -154,7 +148,7 @@ class App extends React.Component {
     });
   }
 
-  addLocation(location) {
+  addLocation = location => {
     // Добавляем город, если найдем в списке городов
     const city = location.split(', ')[0];
     const country = location.split(', ')[1]?.trim();
@@ -200,7 +194,7 @@ class App extends React.Component {
 
   // Обрабатываем окончание drag'n'drop -
   // изменяем порядок выбранных городов
-  handleOnDragEnd(result) {
+  handleOnDragEnd = result => {
     this.setPersistentState(state => {
       let locations = state.locations.slice();
       let [reorderedLocation] = locations

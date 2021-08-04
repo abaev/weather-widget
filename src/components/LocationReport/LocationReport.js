@@ -11,11 +11,9 @@ import ReportHeader from '@/components/ReportHeader/ReportHeader';
 class LocationReport extends React.Component {
   constructor(props) {
     super(props);
-
-    this.onGearClick = this.onGearClick.bind(this);
   }
 
-  onGearClick() {
+  onGearClick = () => {
     this.props.onGearClick();
   }
 
@@ -115,7 +113,6 @@ class LocationReport extends React.Component {
     const humidity = report.main?.humidity || '';
     const visibility = report?.visibility / 1000 || '';
 
-
     return (
       <Box width={1} mb={3}>
         <ReportHeader header={reportHeader} showGear={this.props.showGear}
@@ -133,7 +130,6 @@ class LocationReport extends React.Component {
               {temperature}&deg; C
             </Typography>
           }
-          
         </Box>
 
         {/* Ощается как, погодные условия в общем */}
@@ -208,7 +204,6 @@ class LocationReport extends React.Component {
               </Typography>
             </Box>
           }
-          
         </Box>
       </Box>
     );
