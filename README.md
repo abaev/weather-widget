@@ -25,7 +25,9 @@ You will also see any lint errors in the console.
 `<script src="./build/static/js/main.js" defer></script>`  
 `<link rel="stylesheet" href="./build/static/css/main.css">`  
 **Использование**  
-`<weather-widget></weather-widget>` (Максимальная ширина 340 px)  
+`<weather-widget data-widget-name="имя_виджета"></weather-widget>`  
+Где имя_виджета - уникальное имя, в документе может быть несколько виджетов работающих независимо друг от друга.  
+Максимальная ширина огрничена 340 px  
 **После сборки можно посмотреть демо**  
 `example.html` в папке проекта  
   

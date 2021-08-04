@@ -6,10 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 class ReportHeader extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   onGearClick = () => {
     this.props.onGearClick();
   }

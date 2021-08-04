@@ -10,7 +10,6 @@ import grey from '@material-ui/core/colors/grey';
 import MenuIcon from '@material-ui/icons/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Divider } from '@material-ui/core';
 
 const PlaceCardContent = withStyles({
   root: {
@@ -32,10 +31,6 @@ const PlaceCard = withStyles({
 })(Card);
 
 class LocationsList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   onDeleteClick = location => {
     this.props.onDeleteClick(location);
   }

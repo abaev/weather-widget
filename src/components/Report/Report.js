@@ -5,10 +5,6 @@ import Box from '@material-ui/core/Box';
 import LocationReport from '@/components/LocationReport/LocationReport';
 
 class Report extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   onGearClick = () => {
     this.props.onGearClick();
   }

@@ -1,3 +1,6 @@
+// Благодаря пропсу widgetName храним данные
+// каждого виджета отдельно
+
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import { withStyles } from "@material-ui/core/styles";
@@ -16,8 +19,8 @@ const StyledContainer = withStyles({
 })(Container);
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       view: 'settings',
@@ -92,7 +95,7 @@ class App extends React.Component {
   getPersistentState() {
     try {
       const persistentState = JSON.parse(
-        localStorage.getItem('weatherWidget'));
+        localStorage.getItem(`weatherWidget-${this.props.widgetName}`));
 
       if(persistentState) {
         return persistentState;
@@ -114,7 +117,7 @@ class App extends React.Component {
       let persState = this.getPersistentState();
       let newState = setStateFn(state);
 
-      localStorage.setItem('weatherWidget', JSON.stringify(
+      localStorage.setItem(`weatherWidget-${this.props.widgetName}`, JSON.stringify(
         Object.assign(persState || {}, newState)));
       
       return newState;

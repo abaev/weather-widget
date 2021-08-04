@@ -10,12 +10,25 @@ import '@/components/styles/main.css';
 // Находим все элементы <weather-widget>
 let root = document.getElementsByTagName('weather-widget');
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  [...root][0]
-);
+// Рендерим в каждом найденном элементе наш виджет,
+// передавая в него значение атрибута data-widget-name,
+// это необходимо для независимой работы нескольких виджетов
+// в одном документе
+[...root].forEach(rootEl => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App widgetName={rootEl.dataset.widgetName}/>
+    </React.StrictMode>,
+    rootEl
+  );
+})
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <App ww="1"/>
+//   </React.StrictMode>,
+//   [...root][0]
+// );
 
 // Это должно быть закомментировано для сборки в bundle
 // If you want to start measuring performance in your app, pass a function

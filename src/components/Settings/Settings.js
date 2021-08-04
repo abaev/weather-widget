@@ -8,10 +8,6 @@ import LocationsList from '@/components/LocationsList/LocationsList';
 import AddLocation from '@/components/AddLocation/AddLocation';
 
 class Settings extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   onCloseClick = () => {
     this.props.onCloseClick();
   }
